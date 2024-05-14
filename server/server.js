@@ -23,9 +23,11 @@ if (isProduction) {
   server = http.createServer(serverOptions, app);
 }
 
+const URLs= process.env.FRONTEND_URL;
+
 const io = socketIo(server, {
   cors: {
-    origin: ["https://systemic-altruism-soulmegle.onrender.com", "http://localhost:5173", "https://192.168.117.97:5173", "http://192.168.117.97:5173"],
+    origin: URLs.split(","),
     methods: ["GET", "POST"],
     credentials: true,
   },
